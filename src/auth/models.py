@@ -6,7 +6,6 @@ from sqlalchemy import (
     TIMESTAMP, ForeignKey,
     Table, Column, JSON, Boolean
 )
-from sqlalchemy.orm import Mapped, mapped_column
 
 from src.database import Base
 

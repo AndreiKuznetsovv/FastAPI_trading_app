@@ -1,5 +1,21 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select, insert
+from src.database import get_async_session
+from .models import operation
+from .schemas import OperationCreate
+from .services import get_operations_by_type, post_specific_operation
+
+router = APIRouter()
+
+@router.get("/")
+async def get_specific_operations(operation_type: str, session: AsyncSession = Depends(get_async_session)):
+    operations_list = await get_operations_by_type(operation_type=operation_type, session=session)
+    return operations_list
 
 
-auth_router = APIRouter()
 
+@router.post("/")
+async def add_specific_operations(new_operation: OperationCreate,session: AsyncSession = Depends(get_async_session)):
+    adding_data_result = await post_specific_operation(new_operation=new_operation, session=session)
+    return adding_data_result
