@@ -1,11 +1,11 @@
 from datetime import datetime
 
 from sqlalchemy import (
-    MetaData, Integer, String,
+    Integer, String,
     TIMESTAMP, Table, Column
 )
 
-metadata = MetaData()
+from src.database import metadata
 
 operation = Table(
     "operation",

@@ -16,7 +16,8 @@ async def get_operations_by_type(operation_type: str, session: AsyncSession = De
         return {
             "status": "success",
             "data": [dict(r._mapping) for r in result],
-            "details": "list of requested operations"}
+            "details": "list of requested operations"
+        }
     except ArgumentError:
         raise HTTPException(status_code=500, detail=
         {
@@ -36,7 +37,8 @@ async def post_specific_operation(new_operation: OperationCreate, session: Async
         return {
             "status": "success",
             "data": None,
-            "details": "Given data added successfully"}
+            "details": "Given data added successfully"
+        }
     except SQLAlchemyError:
         raise HTTPException(status_code=500, detail=
         {
