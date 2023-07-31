@@ -4,7 +4,9 @@ from alembic import context
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
-from src.config import Config
+from src.auth.models import *
+from src.operations.models import *
+from src.config import Settings
 from src.database import metadata
 
 # this is the Alembic Config object, which provides
@@ -12,11 +14,11 @@ from src.database import metadata
 config = context.config
 
 section = config.config_ini_section
-config.set_section_option(section, "DB_HOST", Config.DB_HOST)
-config.set_section_option(section, "DB_PORT", Config.DB_PORT)
-config.set_section_option(section, "DB_NAME", Config.DB_NAME)
-config.set_section_option(section, "DB_USER", Config.DB_USER)
-config.set_section_option(section, "DB_PASS", Config.DB_PASS)
+config.set_section_option(section, "DB_HOST", Settings.DB_HOST)
+config.set_section_option(section, "DB_PORT", Settings.DB_PORT)
+config.set_section_option(section, "DB_NAME", Settings.DB_NAME)
+config.set_section_option(section, "DB_USER", Settings.DB_USER)
+config.set_section_option(section, "DB_PASS", Settings.DB_PASS)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
